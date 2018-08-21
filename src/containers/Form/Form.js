@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 
-import RadioInputs from '../../components/RadioInputs';
+import Radios from '../../components/Radios';
 import Select from '../../components/Select';
+import Checkboxes from '../../components/Checkboxes';
 import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
+import Button from '../../components/Button';
 
+export const LANDSCAPE = 'Landscape';
+export const PORTRAIT = 'Portrait';
 export const BASE_COLOR = '#e57e24';
 
 class Form extends Component {
@@ -15,9 +19,10 @@ class Form extends Component {
 
     this.state = {
       certifData: {
-        orientation: '',
+        orientation: LANDSCAPE,
         bgcolor: BASE_COLOR,
         font: '',
+        decor: [],
         firstName: '',
         lastName: '',
         achievement: '',
@@ -27,17 +32,18 @@ class Form extends Component {
         institution: ''
       },
 
+      orientOptions: [LANDSCAPE, PORTRAIT],
       fontOptions: ['Times New Roman', 'Arial', 'Calibri'],
+      decorOptions: ['border', 'copyright'],
       cityOptions: ['Moscow', 'Saint-Petersburg','Tver']
     };
   }
 
-  handleFormSubmit = (e) => {
-    e.preventDefault();
-  }
-
-  handleFormClear() {
-    // Logic for resetting the form
+  handleRadio = (e) => {
+    let value = e.target.value;
+    this.setState( prevState => ({ certifData:
+      {...prevState.certifData, orientation: value }
+    }));
   }
 
   handleInput = (e) => {
@@ -52,11 +58,49 @@ class Form extends Component {
     })
   }
 
+  handleDecorCheckbox = (e) => {
+    const newSelection = e.target.value;
+    const decorArray = this.state.certifData.decor;
+    let newSelectionArray;
+
+    if(decorArray.indexOf(newSelection) > -1) {
+      newSelectionArray = decorArray.filter(s => s !== newSelection)
+    } else {
+      newSelectionArray = [...decorArray, newSelection];
+    }
+
+    this.setState( prevState => ({ certifData:
+      {...prevState.certifData, decor: newSelectionArray }
+    })
+    )
+  }
+
+  handleFormClear = (e) => {
+    e.preventDefault();
+    this.setState({ 
+      certifData: {
+        orientation: LANDSCAPE,
+        bgcolor: BASE_COLOR,
+        font: '',
+        decor: [],
+        firstName: '',
+        lastName: '',
+        achievement: '',
+        date: '',
+        city: '',
+        authority: '',
+        institution: ''
+      },
+    })
+  }
+
   render() {
 
     const { 
+      orientation,
       bgcolor,
       font,
+      decor,
       firstName, 
       lastName, 
       achievement, 
@@ -66,7 +110,12 @@ class Form extends Component {
       institution 
     } = this.state.certifData;
 
-    const { fontOptions, cityOptions } = this.state;
+    const { 
+      orientOptions, 
+      fontOptions, 
+      decorOptions, 
+      cityOptions
+    } = this.state;
 
     return (
       <form 
@@ -77,7 +126,11 @@ class Form extends Component {
           <legend>Choose your certificate style</legend>
           <div>
             <h2>Orientation:</h2>
-            <RadioInputs />
+            <Radios
+              options={orientOptions}
+              orientation={orientation}
+              handleChange={this.handleRadio}
+            />
           </div>
           <div>
             <h2>Background color:</h2>
@@ -99,6 +152,14 @@ class Form extends Component {
               options={fontOptions}
               value={font}
               handleChange={this.handleInput}
+            />
+          </div>
+          <div>
+            <h2>Decorations:</h2>
+            <Checkboxes 
+              options={decorOptions}
+              selectedOptions={decor}
+              handleChange={this.handleDecorCheckbox}
             />
           </div>
         </fieldset>
@@ -163,11 +224,12 @@ class Form extends Component {
             handleChange = {this.handleInput}
           />
         </fieldset>
-        <span className=''>
-          <button type='submit' className=''>Create</button>
-        </span>
-        <span className=''>
-          <button type='submit' className=''>Clear</button>
+        <span>
+          <Button
+            className=''
+            title={'Reset'}
+            onClick= {this.handleFormClear}
+          />
         </span>
       </form>
     )
