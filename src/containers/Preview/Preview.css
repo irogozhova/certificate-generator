@@ -1,0 +1,18 @@
+.preview {
+  text-align: center; 
+}
+
+.certificate {
+  height: 500px;
+  background-color: #e57e24;
+  padding: 1vw; 
+}
+
+.credentials {
+  display: table;
+  width: 100%; 
+}
+
+.tableColumn {
+  display: table-cell; 
+}

@@ -1,0 +1,11 @@
+html, body, div, span, h1, a, ol, ul, li, section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline; 
+}
+
+html, body {
+  font-size: 100%;
+}
