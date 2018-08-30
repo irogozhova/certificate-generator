@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
+import { Field, reduxForm } from 'redux-form'
 
 import Radios from '../../components/Radios';
 import Select from '../../components/Select';
@@ -235,5 +234,9 @@ class Form extends Component {
     )
   }
 }
+
+Form = reduxForm({
+  form: 'certificateData'
+})(Form)
 
 export default Form;
