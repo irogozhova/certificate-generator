@@ -8,11 +8,16 @@ class Preview extends Component {
 
     const { values } = this.props;
 
-    const orientation = (values != null && values.orientation !== undefined) ? values.orientation : "(orientation)";
-    const bgcolor = (values != null && values.bgcolor !== undefined) ? values.bgcolor : "(bgcolor)";
-    const font = (values != null && values.font !== undefined) ? values.font : "(font)";
+    // const orientation = (values != null && values.orientation !== undefined) ? values.orientation : "(orientation)";
+    // const bgcolor = (values != null && values.bgcolor !== undefined) ? values.bgcolor : "(bgcolor)";
+    // const font = (values != null && values.font !== undefined) ? values.font : "(font)";
     const firstName = (values != null && values.firstName !== undefined) ? values.firstName : "(First name)";
     const lastName = (values != null && values.lastName !== undefined) ? values.lastName : "(Last name)";
+    const achievement = (values != null && values.achievement !== undefined) ? values.achievement : "(achievement)";
+    const date = (values != null && values.date !== undefined) ? values.date : "(date)";
+    const city = (values != null && values.city !== undefined) ? values.city : "(city)";
+    const authority = (values != null && values.authority !== undefined) ? values.authority : "(authority)";
+    const institution = (values != null && values.institution !== undefined) ? values.institution : "(institution)";
 
     return (
       <div className={styles.preview}>
@@ -25,18 +30,20 @@ class Preview extends Component {
           </div>
           <h3 className='context-heading'>For excellence in</h3>
           <div>
+            {achievement}
           </div>
           <div className={styles.credentials}>
             <div className={styles.tableColumn}>
               <h3>Date:</h3>
-              <div>{orientation}</div>
-              <h3>Place:</h3>
-              <div>{bgcolor}</div>
+              <div>{date}</div>
+              <h3>City:</h3>
+              <div>{city}</div>
             </div>
             <div className={styles.tableColumn}>
               <h3>Name:</h3>
-              <div>{font}</div>
+              <div>{authority}</div>
               <h3>Institution:</h3>
+              <div>{institution}</div>
             </div>
           </div>
         </div>

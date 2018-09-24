@@ -40,15 +40,37 @@ let CertificateForm = props => {
           <Field name="copyright" id="copyright" component="input" type="checkbox" />
         </div>
       </fieldset>
-      <div>
-        <label htmlFor="firstName">First Name</label>
-        <Field name="firstName" component="input" type="text" />
-      </div>
-      <div>
-        <label htmlFor="lastName">Last Name</label>
-        <Field name="lastName" component="input" type="text" />
-      </div>
-      <button type="submit">Submit</button>
+      <fieldset>
+        <legend>Name of the nominee:</legend>
+        <div>
+          <label htmlFor="firstName">First Name</label>
+          <Field name="firstName" component="input" type="text" />
+        </div>
+        <div>
+          <label htmlFor="lastName">Last Name</label>
+          <Field name="lastName" component="input" type="text" />
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Describe the area of achievement:</legend>
+        <Field name="achievement" component="textarea" placeholder={'For excellence in...'} />
+      </fieldset>
+      <fieldset>
+        <legend>Credentials (who issued the certificate):</legend>
+        <Field name="date" component="input" type="date" />
+        <br/>
+        <label htmlFor="city">City</label>
+        <Field name="city" component="select">
+          <option></option>
+          <option value="Tver">Tver</option>
+          <option value="Moscow">Moscow</option>
+          <option value="Saint Petersburg">Saint Petersburg</option>
+        </Field>
+        <br/>
+        <Field name="authority" component="input" type="text" placeholder={'Name of authority'} />
+        <Field name="institution" component="input" type="text" placeholder={'Institution'} />
+      </fieldset>
+      <button type="submit">Clear</button>
     </form>
   );
 };
