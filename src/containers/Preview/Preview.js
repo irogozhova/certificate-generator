@@ -10,6 +10,7 @@ class Preview extends Component {
 
     const orientation = (values != null && values.orientation !== undefined) ? values.orientation : "(orientation)";
     const bgcolor = (values != null && values.bgcolor !== undefined) ? values.bgcolor : "(bgcolor)";
+    const font = (values != null && values.font !== undefined) ? values.font : "(font)";
     const firstName = (values != null && values.firstName !== undefined) ? values.firstName : "(First name)";
     const lastName = (values != null && values.lastName !== undefined) ? values.lastName : "(Last name)";
 
@@ -34,6 +35,7 @@ class Preview extends Component {
             </div>
             <div className={styles.tableColumn}>
               <h3>Name:</h3>
+              <div>{font}</div>
               <h3>Institution:</h3>
             </div>
           </div>

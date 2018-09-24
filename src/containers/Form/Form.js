@@ -32,14 +32,13 @@ let CertificateForm = props => {
             <option value="Comic Sans">Comic Sans</option>
           </Field>
         </div>
-        {/* <div>
+        <div>
           <h2>Decorations:</h2>
-          <Checkboxes 
-            options={decorOptions}
-            selectedOptions={decor}
-            handleChange={this.handleDecorCheckbox}
-          />
-        </div> */}
+          <label htmlFor="border">Border</label>
+          <Field name="border" id="border" component="input" type="checkbox" />
+          <label htmlFor="copyright">Copyright</label>
+          <Field name="copyright" id="copyright" component="input" type="checkbox" />
+        </div>
       </fieldset>
       <div>
         <label htmlFor="firstName">First Name</label>
