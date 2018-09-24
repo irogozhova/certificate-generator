@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 
 import styles from './Preview.css';
 
 class Preview extends Component {
 
-  onFormSubmit = (event) => {
-    event.preventDefault();
-  }
-
   render() {
+
+    const { values } = this.props;
+    const firstName = (values != null && values.firstName !== undefined) ? values.firstName : "(First name)";
+    const lastName = (values != null && values.lastName !== undefined) ? values.lastName : "(Last name)";
 
     return (
       <div className={styles.preview}>
@@ -18,9 +16,12 @@ class Preview extends Component {
         <div className={styles.certificate}>
           <h2>Certificate of Award</h2>
           <h3 className='context-heading'>This certificate is awarded to</h3>
-          <div></div>
+          <div>
+            {firstName + " " + lastName} 
+          </div>
           <h3 className='context-heading'>For excellence in</h3>
-          <div></div>
+          <div>
+          </div>
           <div className={styles.credentials}>
             <div className={styles.tableColumn}>
               <h3>Date:</h3>
